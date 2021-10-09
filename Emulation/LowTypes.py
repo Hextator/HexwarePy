@@ -26,13 +26,13 @@ import functools
 
 import struct
 
-#UINT32_MAX = (1 << 32) - 1
+UINT32_MAX = (1 << 32) - 1
 
 def rawToFloat(intVal):
-	#global UINT32_MAX
+	global UINT32_MAX
 
-	#if (UINT32_MAX + 1) >> 1 <= intVal:
-	#	intVal = (UINT32_MAX + 1) - intVal
+	if (UINT32_MAX + 1) >> 1 <= intVal:
+		intVal -= UINT32_MAX + 1
 	return struct.unpack('f', struct.pack('i', intVal))[0]
 
 def floatToRaw(floatVal):
