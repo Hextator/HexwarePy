@@ -24,8 +24,10 @@
 
 import threading
 
-def createDaemonThread(targ):
-	output = threading.Thread(target = targ)
+def createDaemonThread(targ, threadArgs = None, threadKWargs = None):
+	threadArgs = () if threadArgs is None else threadArgs
+	threadKWargs = {} if threadKWargs is None else threadKWargs
+	output = threading.Thread(target = targ, args = threadArgs, kwargs = threadKWargs)
 	output.daemon = True
 	output.start()
 	return output
